@@ -11,6 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -44,8 +46,13 @@ public class Apolice {
     @Column(name = "data_vigencia", nullable = false)
 	private LocalDate dataVigencia;
     
-     
-	
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false) 
+	private Cliente cliente;
+    
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 	 
     //Gerando o numero de apolice automaticamente pelo JPA
     @PrePersist //Antes do INSERT da entidade executa este método primeiro
@@ -78,8 +85,25 @@ public class Apolice {
     }
     
     
+    
  
-    public Long getId() {
+    public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
