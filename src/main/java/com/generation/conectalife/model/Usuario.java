@@ -1,9 +1,14 @@
 package com.generation.conectalife.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -27,6 +32,9 @@ public class Usuario {
 	@NotBlank(message = "A senha é obrigatória") // Validação para não permitir valor nulo ou vazio
 	@Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres") // Validação para verificar se o valor tem no mínimo 6 caracteres
 	private String senha;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Apolice> apolices;
 	
 	// Getters and Setters
 	public Long getId() {
