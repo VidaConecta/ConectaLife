@@ -34,11 +34,19 @@ public class ClienteController {
 
     // Criar novo cliente
     @PostMapping
-    public ResponseEntity<Cliente> criarCliente(@Valid @RequestBody Cliente cliente) {
+    public ResponseEntity<?> criarCliente(@Valid @RequestBody Cliente cliente) {
+        int idade = cliente.calcularIdade();
+
+        if (idade < 18) {
+            return ResponseEntity
+                    .badRequest()
+                    .body("Você não é maior de idade. Cadastro não permitido.");
+        }
+
         Cliente novoCliente = clienteRepository.save(cliente);
         return ResponseEntity.ok(novoCliente);
     }
-
+    
     // Listar todos os clientes
     @GetMapping
     public ResponseEntity<List<Cliente>> listarClientes() {
