@@ -26,7 +26,7 @@ public class Cliente {
 	@NotBlank(message = "Atributo nome do cliente é obrigatorio!")
 	@Size(min = 2, max = 100, message = "O atributo nome do cliente deve conter entre 2 e 100 caracteres!")
 	@Column(name = "nome", nullable = false, length = 100)
-	public String nomeCliente;
+	public String nome;
 	
 	@NotNull(message = "Atributo data de nascimento do cliente é obrigatório!")
     @Past(message = "A data de nascimento deve ser anterior à data atual!")
@@ -54,12 +54,12 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getNomeCliente() {
-		return nomeCliente;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	public void setNome(String nomeCliente) {
+		this.nome = nomeCliente;
 	}
 
 	public LocalDate getDataNascimento() {

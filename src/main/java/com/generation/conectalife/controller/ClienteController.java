@@ -60,7 +60,7 @@ public class ClienteController {
                                                     @Valid @RequestBody Cliente clienteAtualizado) {
         return clienteRepository.findById(id)
                 .map(cliente -> {
-                    cliente.setNomeCliente(clienteAtualizado.getNomeCliente());
+                    cliente.setNome(clienteAtualizado.getNome());
                     cliente.setDataNascimento(clienteAtualizado.getDataNascimento());
                     cliente.setCpf(clienteAtualizado.getCpf());
                     cliente.setEmail(clienteAtualizado.getEmail());
