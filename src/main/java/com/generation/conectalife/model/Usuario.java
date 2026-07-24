@@ -33,7 +33,7 @@ public class Usuario {
 	@Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres") // Validação para verificar se o valor tem no mínimo 6 caracteres
 	private String senha;
 	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Apolice> apolices;
 	
 	// Getters and Setters
