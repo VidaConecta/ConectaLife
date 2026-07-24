@@ -51,7 +51,7 @@ public class Cliente {
     @Column(name = "email", nullable = false, unique = true, length = 150) //significa que o valor daquela coluna não pode se repetir no banco de dados
     private String email;
 	
-	@OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Apolice> apolices;
 	
 	public int calcularIdade() {
