@@ -1,6 +1,7 @@
 package com.generation.conectalife.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,6 +46,14 @@ public class Cliente {
     @Email(message = "O email informado não é válido!")
     @Column(name = "email", nullable = false, unique = true, length = 150) //significa que o valor daquela coluna não pode se repetir no banco de dados
     private String email;
+	
+	public int calcularIdade() {
+	    return Period.between(this.dataNascimento, LocalDate.now()).getYears();
+	}
+	
+	public Boolean verificarEligibilidadeSeguro(int idade) {
+		return idade >= 18;
+    }
 
 	public Long getId() {
 		return id;
