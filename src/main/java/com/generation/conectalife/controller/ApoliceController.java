@@ -50,7 +50,7 @@ public class ApoliceController {
                 .body(apoliceRepository.save(apolice));
     }
 	
-	@PutMapping
+	@PutMapping("/{id}")
     public ResponseEntity<Apolice> put(@Valid @RequestBody Apolice apolice) {
         if (apolice.getId() == null || !apoliceRepository.existsById(apolice.getId())) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
