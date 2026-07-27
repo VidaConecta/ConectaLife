@@ -50,14 +50,31 @@ public class ApoliceController {
                 .body(apoliceRepository.save(apolice));
     }
 	
+<<<<<<< HEAD
 	@PutMapping("/{id}")
+=======
+	/*@PutMapping
+>>>>>>> a0ac5d62d2a4186fbe217502443d684d9cf90dca
     public ResponseEntity<Apolice> put(@Valid @RequestBody Apolice apolice) {
         if (apolice.getId() == null || !apoliceRepository.existsById(apolice.getId())) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.status(HttpStatus.OK)
                 .body(apoliceRepository.save(apolice));
-    }
+    }*/
+	@PutMapping("/{id}")
+	public ResponseEntity<Apolice> put(
+	        @PathVariable Long id,
+	        @Valid @RequestBody Apolice apolice) {
+
+	    if (!apoliceRepository.existsById(id)) {
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    apolice.setId(id);
+
+	    return ResponseEntity.ok(apoliceRepository.save(apolice));
+	}
 	
 	@DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
