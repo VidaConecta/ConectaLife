@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.generation.conectalife.model.Cliente;
 import com.generation.conectalife.model.Usuario;
 import com.generation.conectalife.repository.UsuarioRepository;
 
@@ -32,6 +33,12 @@ public class UsuarioController {
         Optional<Usuario> usuario = usuarioRepository.findById(id); // Busca pelo ID
         return usuario.map(ResponseEntity::ok)
                       .orElseGet(() -> ResponseEntity.notFound().build()); // Retorna 200 ou 404
+    }
+    
+    //Procurar usuario por email
+    @GetMapping("/email/{email}")
+    public ResponseEntity <List<Usuario>> buscarUsuarioPorEmail(@PathVariable String email) {
+        return ResponseEntity.ok(usuarioRepository.findByEmailContainingIgnoreCase(email));
     }
     
     // Criar novo usuário (com validação)

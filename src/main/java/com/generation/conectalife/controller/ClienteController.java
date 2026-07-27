@@ -61,6 +61,12 @@ public class ClienteController {
         return cliente.map(ResponseEntity::ok)
                       .orElse(ResponseEntity.notFound().build());
     }
+ // Buscar cliente por Nome
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity <List<Cliente>> buscarClientePorNome(@PathVariable String nome) {
+        return ResponseEntity.ok(clienteRepository.findByNomeContainingIgnoreCase(nome));
+    }
+    
 
     // Atualizar cliente por ID
     @PutMapping("/{id}")
